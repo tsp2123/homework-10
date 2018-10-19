@@ -15,7 +15,6 @@ let svg = d3
   .append('g')
   .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 
-
 let projection = d3.geoMercator()
 // define which projection you want to use
 // then feed it into the geoPath
@@ -36,8 +35,8 @@ Promise.all([
   .catch(err => console.log('Failed on', err))
 
 function ready([json, datapoints]) {
-	let countries = topojson.feature(json, json.objects.countries)
-    console.log(countries)
+  let countries = topojson.feature(json, json.objects.countries)
+  console.log(countries)
   svg
     .selectAll('.country')
     .data(countries.features) // always going to be .features (list inside geojson)
@@ -45,11 +44,22 @@ function ready([json, datapoints]) {
     .append('path')
     .attr('class', 'country')
     .attr('d', path)
+    .attr('fill', 'black')
+
   svg // adding long lat lines to map
     .append('path')
     .datum(graticule())
     .attr('d', path)
     .attr('stroke', 'lightgrey')
+    .attr('stroke-weight', 0.3)
+    .attr('fill', 'none')
+    .lower()
+
+  svg
+    .append('rect')
+    .attr('width', width)
+    .attr('height', height)
+    .attr('fill', 'black')
     .lower()
 
   svg
@@ -58,7 +68,7 @@ function ready([json, datapoints]) {
     .enter()
     .append('circle')
     .attr('class', 'cities')
-    .attr('r', .3)
+    .attr('r', 0.8)
     .attr('transform', d => {
       let coords = projection([d.lng, d.lat])
       return `translate(${coords})`
@@ -66,6 +76,4 @@ function ready([json, datapoints]) {
     .attr('fill', d => {
       return colorScale(d.population)
     })
-
-
- }
+}

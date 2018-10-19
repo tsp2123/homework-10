@@ -12,6 +12,4 @@ var svg = d3
   .append('g')
   .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 
-function ready([hexFile, datapoints]) {
-
-}
+function ready([hexFile, datapoints]) {}
