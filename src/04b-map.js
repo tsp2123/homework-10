@@ -76,6 +76,6 @@ function ready(json) {
         let totalVotes = d.properties.clinton + d.properties.trump
         return opacityScale(totalVotes)
       }
-      return 0.2
+      return 0.3
     })
 }

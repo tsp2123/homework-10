@@ -118,6 +118,6 @@ function ready([json, powerplants]) {
     .attr('fill', 'black')
     .attr('alignment-baseline', 'middle')
 
-
+// have no idea how to make the legend
 
 }
